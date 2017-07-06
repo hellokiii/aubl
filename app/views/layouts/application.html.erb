@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Aubl</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+  	<% if user_signed_in? %> 
+	  	current user: <%=current_user.id%>
+	  	<a href="/users/sign_out">logout</a>
+	  	<a href="/home/choose">choose</a>
+	  	<a href="/home/lineup">lineup</a>
+	  	<a href="/home/dbupload">upload</a><br>
+  	<% end %>
+    <%= yield %>
+  </body>
+</html>
