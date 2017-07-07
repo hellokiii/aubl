@@ -1,2 +1,3 @@
-<h1>Home#average</h1>
-<p>Find me in app/views/home/average.html.erb</p>
+<% @picked.drop(5).each do |p| %>
+	<%= p.batting_order %><br>
+<% end %>

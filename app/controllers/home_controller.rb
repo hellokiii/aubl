@@ -34,10 +34,63 @@ class HomeController < ApplicationController
 
 
   def average
+  	@picked = current_user.records.where(selected: true).order(batting_order: :asc)
   end
 
   def five_inning
-  	@lineup = current_user.records.where(selected: true)
-  	inning = 1
-  end
+  	@lineup = current_user.records.where(selected: true).order(batting_order: :asc)
+	advance = {"baseonballs": [1],
+	     "hbp": [1],
+	     "single": [0,1],
+	     "double": [1,0],
+	     "triple": [1,0,0],
+	     "homerun": [1,0,0,0],
+	     "pb": [0]
+	    }
+	inning = 1
+	@result = []
+	@score = 0
+	batter_num = 1
+	while inning < 6	
+		runners = []
+		@runners = []
+		left_on_base = []
+	  	@result << inning.to_s + "inning"
+	  	out = 0
+  		
+	  	while out < 3
+		  	@lineup.drop(batter_num - 1).each do |l|
+		  		result_of_the_batter = l.batter_result
+		  		batter_num += 1
+		  		if batter_num > 9
+		  		  batter_num = 1
+		  		end
+		  		@result << "#{l.batting_order.to_s}번 타자 #{l.name}: #{result_of_the_batter}"
+		  		if result_of_the_batter == "strikeout"
+		  			out += 1
+		  			if out == 3
+		  				inning += 1
+		  				@result << runners
+		  				break
+		  			end
+		  		elsif result_of_the_batter == "pb"
+		  			out += 1
+		  			if out == 3
+		  				inning += 1
+		  				@result << runners
+		  				break
+		  			else
+		  				runners += advance[:pb]
+		  			end
+		  		else
+		  			runners += advance[result_of_the_batter.to_sym]
+		  		end
+		  	end
+
+	  	end
+	  	@runners = runners
+	  	left_on_base = runners.last(3)
+	  	@score = @score + runners.count(1) - left_on_base.count(1)
+	  end
+	end
 end
