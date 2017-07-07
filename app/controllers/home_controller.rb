@@ -2,6 +2,11 @@ class HomeController < ApplicationController
 	before_action :login
 
   def dbupload
+  		if Record.where(user_id: current_user.id).count == 0
+	    		25.times do
+				Record.create(user_id: current_user.id)
+	    		end
+	    	end
   end
 
   def upload
@@ -29,15 +34,13 @@ class HomeController < ApplicationController
     redirect_to '/home/lineup'
   end
   def lineup
+  	if Record.where(user_id: current_user.id).count==0
+    		redirect_to '/home/dbupload'
+     end
   	@picked = current_user.records.where(selected: true).order(batting_order: :asc)
   end
 
-
-  def average
-  	@picked = current_user.records.where(selected: true).order(batting_order: :asc)
-  end
-
-  def five_inning
+  def simulation
   	@lineup = current_user.records.where(selected: true).order(batting_order: :asc)
 	advance = {"baseonballs": [1],
 	     "hbp": [1],
@@ -51,10 +54,11 @@ class HomeController < ApplicationController
 	@result = []
 	@score = 0
 	batter_num = 1
-	while inning < 6	
+	while inning < params[:innings].to_i + 1	
 		runners = []
 		@runners = []
 		left_on_base = []
+		@result << ""
 	  	@result << inning.to_s + "inning"
 	  	out = 0
   		
@@ -70,14 +74,16 @@ class HomeController < ApplicationController
 		  			out += 1
 		  			if out == 3
 		  				inning += 1
-		  				@result << runners
+		  				# @result << runners
+		  				@result << runners.count(1) - runners.last(3).count(1)
 		  				break
 		  			end
 		  		elsif result_of_the_batter == "pb"
 		  			out += 1
 		  			if out == 3
 		  				inning += 1
-		  				@result << runners
+		  				# @result << runners
+		  				@result << runners.count(1) - runners.last(3).count(1)
 		  				break
 		  			else
 		  				runners += advance[:pb]
@@ -88,9 +94,18 @@ class HomeController < ApplicationController
 		  	end
 
 	  	end
-	  	@runners = runners
+	  	# @runners = runners
 	  	left_on_base = runners.last(3)
 	  	@score = @score + runners.count(1) - left_on_base.count(1)
 	  end
+	end
+
+
+	def average
+		@sum = 0.to_f
+		1000.times do 
+			simulation
+			@sum += @score
+		end
 	end
 end

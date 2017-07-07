@@ -11,12 +11,11 @@
 
   <body>
   	<% if user_signed_in? %> 
-	  	current user: <%=current_user.id%>
+	  	current user: <%=current_user.email%><br>
 	  	<a href="/users/sign_out">logout</a>
 	  	<a href="/home/choose">choose</a>
 	  	<a href="/home/lineup">lineup</a>
-	  	<a href="/home/dbupload">upload</a>
-  		<a href="/home/five_inning">five_inning</a><br>
+	  	<a href="/home/dbupload">upload</a><br>
   	<% end %>
     <%= yield %>
   </body>

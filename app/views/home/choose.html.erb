@@ -4,7 +4,9 @@
 
 <ul class="dropdown-content checkboxes">
     <% @all_batters.each do |a| %>
-      <li><label><input type="checkbox" /><%=a.name%></label></li>
+        <% unless a.name.nil?%>
+            <li><label><input type="checkbox" /><%=a.name%></label></li>
+        <% end %>
     <% end %>
 </ul>
 

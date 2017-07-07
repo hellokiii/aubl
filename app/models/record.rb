@@ -2,12 +2,11 @@ class Record < ApplicationRecord
 	belongs_to :user
     require 'csv'
     def self.import(file, user)
-	    	if Record.where(user_id: user).count == 0
-	    		20.times do
-				Record.create(user_id: user)
-	    		end
-	    	end
-	    	# user.phone = user.class.columns_hash['phone'].default
+	   #  	if Record.where(user_id: user).count == 0
+	   #  		15.times do
+				# Record.create(user_id: user)
+	   #  		end
+	   #  	end
 	    	Record.where(user_id: user).each do |r|
 	    		r.batting_order = 0
 	    		r.selected = false

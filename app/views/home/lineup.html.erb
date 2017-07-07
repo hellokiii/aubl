@@ -1,3 +1,9 @@
 <% @picked.each do |p| %>
 	<%=p.batting_order%>. <%= p.name %><br>
 <% end %>
+
+<form>
+  <input type="number" name="innings" min="1" max="9" value="5"> inning
+  <button type="submit" formaction="/home/simulation">simulation</button>
+  <button type="submit" formaction="/home/average">1000times</button>
+</form>
