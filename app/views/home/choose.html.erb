@@ -2,7 +2,7 @@
 
 
 
-<ul class="dropdown-content checkboxes">
+<ul class="dropdown-content checkboxes" style="list-style-type: none;">
     <% @all_batters.each do |a| %>
         <% unless a.name.nil?%>
             <li><label><input type="checkbox" /><%=a.name%></label></li>
@@ -14,7 +14,7 @@
 
 <form action="/home/check" method="post">
   <textarea class="result" name="lineup" style="display: none;"></textarea>
-  <input type="submit">
+  <input type="submit" value="선택 완료">
 </form>
 
 

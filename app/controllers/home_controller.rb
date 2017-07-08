@@ -2,11 +2,7 @@ class HomeController < ApplicationController
 	before_action :login
 
   def dbupload
-  		if Record.where(user_id: current_user.id).count == 0
-	    		25.times do
-				Record.create(user_id: current_user.id)
-	    		end
-	    	end
+
   end
 
   def upload
@@ -34,7 +30,10 @@ class HomeController < ApplicationController
     redirect_to '/home/lineup'
   end
   def lineup
-  	if Record.where(user_id: current_user.id).count==0
+	if Record.where(user_id: current_user.id).count == 0
+    		25.times do
+			Record.create(user_id: current_user.id)
+    		end
     		redirect_to '/home/dbupload'
      end
   	@picked = current_user.records.where(selected: true).order(batting_order: :asc)
@@ -75,7 +74,7 @@ class HomeController < ApplicationController
 		  			if out == 3
 		  				inning += 1
 		  				# @result << runners
-		  				@result << runners.count(1) - runners.last(3).count(1)
+		  				@result << "#{runners.count(1) - runners.last(3).count(1)} 득점"
 		  				break
 		  			end
 		  		elsif result_of_the_batter == "pb"
@@ -83,7 +82,7 @@ class HomeController < ApplicationController
 		  			if out == 3
 		  				inning += 1
 		  				# @result << runners
-		  				@result << runners.count(1) - runners.last(3).count(1)
+		  				@result << "#{runners.count(1) - runners.last(3).count(1)} 득점"
 		  				break
 		  			else
 		  				runners += advance[:pb]
