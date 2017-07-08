@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'home#dbupload'
+  root 'home#lineup'
   devise_for :users
   
   get 'home/dbupload'
@@ -13,5 +13,8 @@ Rails.application.routes.draw do
 
   get 'home/simulation'
 
+  get 'post/index'
+  get 'post/index/:message' => 'post#index'
+  post 'post/create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

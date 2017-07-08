@@ -2,4 +2,11 @@
 	<%= r %><br>
 <% end %>
 <br>
-score: <%= @score %>
+시뮬레이션 결과 총 <%= @score %>점이 났습니다
+<% if @score < 3 %>
+	ㅠㅠ
+<% elsif @score > 12 %>
+	!!!
+<% else %>
+	.
+<% end %>
