@@ -15,12 +15,15 @@
 
   <body>
   	<% if user_signed_in? %> 
-	  	 <%=current_user.email%> 님<br>
+	  	<%=current_user.email%> 님<br>
 	  	<a href="/users/sign_out">로그아웃</a> | 
 	  	<a href="/home/choose">선수 고르기</a> | 
 	  	<a href="/home/lineup">라인업</a> | 
 	  	<a href="/home/dbupload">기록파일 올리기</a> | 
-      <a href="/post/index">피드백 남기기</a><br>
+		<a href="/post/index">피드백 남기기</a> 
+		<% if current_user.admin? %>
+			| <a href="/rails/db"> db관리</a>
+		<% end %><br>
   	<% end %>
     <%= yield %>
   </body>
