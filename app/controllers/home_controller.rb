@@ -6,6 +6,11 @@ class HomeController < ApplicationController
   end
 
   def upload
+  	if Record.where(user_id: current_user.id).count == 0
+  	    	25.times do
+			Record.create(user_id: current_user.id)
+    		end
+    	end
     Record.import(params[:csv_file], current_user.id)
     redirect_to '/home/choose', notice: "완료!"
   end
@@ -31,9 +36,6 @@ class HomeController < ApplicationController
   end
   def lineup
 	if Record.where(user_id: current_user.id).count == 0
-    		25.times do
-			Record.create(user_id: current_user.id)
-    		end
     		redirect_to '/home/dbupload'
      end
   	@picked = current_user.records.where(selected: true).order(batting_order: :asc)
