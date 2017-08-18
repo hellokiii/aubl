@@ -6,8 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 
-
-
+gem 'devise-i18n'
 gem 'rails_admin', '~> 1.2'
 gem 'rails_db'
 gem 'devise'
