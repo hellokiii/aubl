@@ -1,15 +1,14 @@
 
 
 
-<!--  checkbox
+
 <ul class="dropdown-content checkboxes" style="list-style-type: none;">
-    <%# @all_batters.each do |a| %>
-        <%# unless a.name.nil?%>
-            <li><label><input type="checkbox" /><%#=a.name%></label></li>
-        <%# end %>
-    <%# end %>
+    <% @all_batters.each do |a| %>
+        <% unless a.name.nil?%>
+            <li><label><input type="checkbox" /><%=a.name%></label></li>
+        <% end %>
+    <% end %>
 </ul>
- -->
 
 
 
