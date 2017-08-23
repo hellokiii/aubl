@@ -7,7 +7,7 @@ end
 
 
 
-
+gem 'devise-i18n'
 gem 'rails_admin', '~> 1.2'
 gem 'rails_db'
 gem 'devise'

@@ -23,20 +23,23 @@
     <!--<link href='https://fonts.googleapis.com/css? =Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>-->
   
     <!--<link href="css/agency.min.css" rel="stylesheet">-->
-    <!--background: url("../img/intro-bg.jpg") no-repeat bottom center scroll;-->
+    
   
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     
-    <!--<background: url("app/img/BACKGROUND.jpg") no-repeat bottom center scroll;-->
   </head>
 
   <body id="page-top">
+   
     
     
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+
+  
+   <% if user_signed_in? %>
+    <nav class="navbar navbar-fixed-top navbar-inverse" id="mainNav">
         <a class="navbar-brand" href="#page-top">LINEUP</a>
        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu <i class="fa fa-bars"></i>
@@ -65,7 +68,7 @@
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
                         <h1 class="brand-heading">LINEUP</h1>
-                        <p class="intro-text">BASEBALL IS STRATEGY</p>
+                        <p class="intro-text">BASEBALL IS STRATEGY</p> 
                         <a href="#about" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
@@ -74,20 +77,11 @@
             </div>
         </div>
     </header>
-    
-    
-    <div class="row">
-  	<% if user_signed_in? %> 
-	  	 <div class="col"><%=current_user.email%> 님</div>
-	  	
-	  	 <div class="col"><a href="/users/sign_out">로그아웃</a></div> 
-	  	 </div>
-	  	
 		<% if current_user.admin? %>
-			| <a href="/rails/db"> db관리</a> 
+	     <a href="/rails/db"> db관리</a> 
 		<% end %><br>
   	<% end %>
-    <%= yield %>
+    <div background=""><%= yield %></div>
     
     </div>
   </body>

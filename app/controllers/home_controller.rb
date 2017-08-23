@@ -18,6 +18,7 @@ class HomeController < ApplicationController
   def choose
   	@all_batters = current_user.records
   end
+  
   def check
     current_user.records.each do |r|
       r.selected = false

@@ -11,6 +11,7 @@ Bundler.require(*Rails.groups)
 module Aubl
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.i18n.default_locale = :ko
     config.load_defaults 5.1
     config.assets.enabled = false  
     # Settings in config/environments/* take precedence over those specified here.
