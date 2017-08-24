@@ -5,10 +5,24 @@
 <ul class="dropdown-content checkboxes" style="list-style-type: none;">
     <% @all_batters.each do |a| %>
         <% unless a.name.nil?%>
-            <li><label><input type="checkbox" /><%=a.name%></label></li>
+            <li><label><input type="checkbox" /><%=a.name%><%=a.batting_order%></label></li>
         <% end %>
     <% end %>
 </ul>
+
+
+<table>
+  <tbody class="sortable">  <!-- sortable target -->
+    <% sortable_fetch(@all_batters) do |batter, id_tag| %>
+      <% unless batter.name.nil? %>  <!-- RailsSortable helper -->
+          <tr id="<%= id_tag %>">  <!-- you must write it -->
+            <td><%= batter.name %></td>
+            <td><%= batter.batting_order %></td>
+          </tr>
+      <%end%>
+    <% end %>
+  </tbody>
+</table>
 
 
 
@@ -41,5 +55,9 @@ $("[type=checkbox]").on('change', function() { // always use change event
     $('.result').html(JSON.stringify($.map(order, function(elem) {
     	return $(elem).closest('label').text().trim();
     })));
+});
+
+$(function() {
+  $('.sortable').railsSortable();
 });
 </script>

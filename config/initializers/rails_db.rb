@@ -1,6 +1,7 @@
 if Object.const_defined?('RailsDb')
   RailsDb.setup do |config|
-    config.verify_access_proc = proc { |controller| controller.current_user.admin? }
+    #TODO: rails/db admin toggle
+    # config.verify_access_proc = proc { |controller| controller.current_user.admin? }
     # # enabled or not
     # config.enabled = Rails.env.development?
 

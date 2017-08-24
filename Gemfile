@@ -6,8 +6,14 @@ git_source(:github) do |repo_name|
 end
 
 
+gem 'jquery-rails'
+gem 'jquery-ui-rails', '~> 6.0.1'
+gem 'rails_sortable'
+
+
+
 gem 'devise-i18n'
-gem 'rails_admin', '~> 1.2'
+# gem 'rails_admin'
 gem 'rails_db'
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

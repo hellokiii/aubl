@@ -1,5 +1,8 @@
 class Record < ApplicationRecord
 	belongs_to :user
+	include RailsSortable::Model
+  	set_sortable :batting_order  # indicate sort column
+    
     require 'csv'
     def self.import(file, user)
 	   #  	if Record.where(user_id: user).count == 0

@@ -16,7 +16,7 @@ class HomeController < ApplicationController
   end
 
   def choose
-  	@all_batters = current_user.records
+  	@all_batters = current_user.records.order(:batting_order)
   end
   def check
     current_user.records.each do |r|
@@ -38,7 +38,7 @@ class HomeController < ApplicationController
 	if Record.where(user_id: current_user.id).count == 0
     		redirect_to '/home/dbupload'
      end
-  	@picked = current_user.records.where(selected: true).order(batting_order: :asc)
+  	@picked = current_user.records.where(selected: true).order(:batting_order)
   end
 
   def simulation
