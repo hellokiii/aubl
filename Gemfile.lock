@@ -38,8 +38,8 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.5.1)
-      public_suffix (~> 2.0, >= 2.0.2)
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
     arel (8.0.0)
     bcrypt (3.1.11)
     bindex (0.5.0)
@@ -127,7 +127,7 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.6)
       pry (>= 0.10.4)
-    public_suffix (2.0.5)
+    public_suffix (3.0.0)
     puma (3.10.0)
     rack (2.0.3)
     rack-test (0.6.3)
@@ -245,15 +245,15 @@ DEPENDENCIES
   devise
   devise-i18n
   jbuilder (~> 2.5)
-  jquery-rails
-  jquery-ui-rails (~> 6.0.1)
+  jquery-rails (~> 4.3)
+  jquery-ui-rails (~> 6.0)
   listen (>= 3.0.5, < 3.2)
   pry
   pry-rails
   puma (~> 3.7)
   rails (~> 5.1.2)
   rails_db
-  rails_sortable
+  rails_sortable (~> 0.1.1)
   sass-rails (~> 5.0)
   selenium-webdriver
   spring

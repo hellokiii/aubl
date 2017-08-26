@@ -6,9 +6,9 @@ git_source(:github) do |repo_name|
 end
 
 
-gem 'jquery-rails'
-gem 'jquery-ui-rails', '~> 6.0.1'
-gem 'rails_sortable'
+gem 'jquery-rails', '~> 4.3'
+gem 'jquery-ui-rails', '~> 6.0'
+gem 'rails_sortable', '~> 0.1.1'
 
 
 

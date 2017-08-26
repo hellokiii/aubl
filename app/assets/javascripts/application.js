@@ -14,5 +14,5 @@
 //= require_tree .
 
 //= require jquery
-// require jquery-ui/widgets/sortable
+//= require jquery-ui/widgets/sortable
 //= require rails_sortable
